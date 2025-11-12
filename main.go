@@ -124,7 +124,7 @@ func handleIRCConnection(irc_conn net.Conn, server_addr string, server_port int)
 
 				// Check if password is defined and valid (parsed from IRC PASS command)
 				if len(irc.IrcPassword) == 0 {
-					irc.IrcSendRaw(irc_conn, "ERROR :IRC password must be defined for nick "+irc.IrcNick+" (used as group for first ICB login)")
+					irc.IrcSendRaw(irc_conn, "ERROR :IRC password must be defined for nick %s (used as group for first ICB login)", irc.IrcNick)
 					logger.LogError("IRC password must be defined for nick " + irc.IrcNick)
 					break
 				}
