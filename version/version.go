@@ -2,7 +2,7 @@
 
 package version
 
-const (
+var (
 	Name    = "goicbgw"
 	Version = "devel"
 )

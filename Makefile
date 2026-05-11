@@ -2,8 +2,10 @@
 .PHONY: all
 all: build
 
+GIT_HASH := $(shell git rev-parse --short HEAD)
+
 build:
-	go build -v -o goicbgw
+	go build -ldflags="-X goicbgw/version.Version=devel-${GIT_HASH}" -v -o goicbgw
 
 .PHONY: clean
 clean:
