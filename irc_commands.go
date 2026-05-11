@@ -11,11 +11,11 @@ import (
 	"strings"
 	"time"
 
-	logger "irc2icb/utils"
-	utils "irc2icb/utils"
+	logger "goicbgw/utils"
+	utils "goicbgw/utils"
 
-	icb "irc2icb/network/icb"
-	irc "irc2icb/network/irc"
+	icb "goicbgw/network/icb"
+	irc "goicbgw/network/irc"
 )
 
 // Handle IRC JOIN command

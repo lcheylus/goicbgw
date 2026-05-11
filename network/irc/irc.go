@@ -10,8 +10,8 @@ import (
 	"strconv"
 	"strings"
 
-	logger "irc2icb/utils"
-	utils "irc2icb/utils"
+	logger "goicbgw/utils"
+	utils "goicbgw/utils"
 )
 
 // TODO Create IRCConn type and adapt IRCSendXXX methods
@@ -309,7 +309,7 @@ func IrcSendNotice(conn net.Conn, format string, args ...interface{}) error {
 }
 
 // Send message with code to IRC connection
-// Example for RPL_WELCOME (001) code message: "001 <NICK> :Welcome to irc2icb proxy <NICK>"
+// Example for RPL_WELCOME (001) code message: "001 <NICK> :Welcome to goicbgw proxy <NICK>"
 func IrcSendCode(conn net.Conn, nick string, code string, format string, args ...interface{}) error {
 	if nick == "" {
 		logger.LogWarn("nick not defined in irc.IrcSendCode function")

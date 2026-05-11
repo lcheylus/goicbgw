@@ -9,7 +9,7 @@ import (
 	"time"
 	"unicode"
 
-	logger "irc2icb/utils"
+	logger "goicbgw/utils"
 )
 
 const (

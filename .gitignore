@@ -1,4 +1,4 @@
-irc2icb
+goicbgw
 *.toml
 !config.toml
 *.log

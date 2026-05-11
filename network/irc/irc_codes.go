@@ -4,7 +4,7 @@
 
 package irc
 
-import logger "irc2icb/utils"
+import logger "goicbgw/utils"
 
 // Numeric codes for IRC reply (RFC 2812, section 5.1)
 // Defined as map to get key programmatically

@@ -12,12 +12,12 @@ import (
 	"strings"
 	"syscall"
 
-	logger "irc2icb/utils"
-	utils "irc2icb/utils"
-	"irc2icb/version"
+	logger "goicbgw/utils"
+	utils "goicbgw/utils"
+	"goicbgw/version"
 
-	icb "irc2icb/network/icb"
-	irc "irc2icb/network/irc"
+	icb "goicbgw/network/icb"
+	irc "goicbgw/network/irc"
 )
 
 // forkProcess process as daemon, returns new process PID

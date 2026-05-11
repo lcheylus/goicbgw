@@ -3,6 +3,6 @@
 package version
 
 const (
-	Name    = "irc2icb"
+	Name    = "goicbgw"
 	Version = "devel"
 )

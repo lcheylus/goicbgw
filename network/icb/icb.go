@@ -13,10 +13,10 @@ import (
 	"strconv"
 	"strings"
 
-	irc "irc2icb/network/irc"
-	logger "irc2icb/utils"
-	utils "irc2icb/utils"
-	"irc2icb/version"
+	irc "goicbgw/network/irc"
+	logger "goicbgw/utils"
+	utils "goicbgw/utils"
+	"goicbgw/version"
 )
 
 // Type for ICB message
@@ -513,7 +513,7 @@ func icbHandleType(icb_conn net.Conn, packet icbPacket, irc_conn net.Conn) error
 		irc.IrcSendCode(irc_conn, irc.IrcNick, irc.IrcReplyCodes["RPL_MOTDSTART"], ":- %s Message of the day - ", "localhost")
 		irc.IrcSendCode(irc_conn, irc.IrcNick, irc.IrcReplyCodes["RPL_MOTD"], ":- Proxy for IRC client to ICB network")
 		irc.IrcSendCode(irc_conn, irc.IrcNick, irc.IrcReplyCodes["RPL_MOTD"], ":- Proxy using %s software, version %s", version.Name, version.Version)
-		irc.IrcSendCode(irc_conn, irc.IrcNick, irc.IrcReplyCodes["RPL_MOTD"], ":- Repository: https://github.com/lcheylus/irc2icb/")
+		irc.IrcSendCode(irc_conn, irc.IrcNick, irc.IrcReplyCodes["RPL_MOTD"], ":- Repository: https://github.com/lcheylus/goicbgw/")
 		// ICB server: ICB Server v1.2c
 		irc.IrcSendCode(irc_conn, irc.IrcNick, irc.IrcReplyCodes["RPL_MOTD"], ":- ICB server: %s", icbProtocolInfo.ServerId)
 		irc.IrcSendCode(irc_conn, irc.IrcNick, irc.IrcReplyCodes["RPL_ENDOFMOTD"], ":End of MOTD command")

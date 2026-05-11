@@ -62,7 +62,7 @@ func getPackageName() string {
 	segments := strings.Split(file, "/")
 	// Second last segment is usually the package name
 	name := segments[len(segments)-2]
-	if strings.Contains(name, "irc2icb") {
+	if strings.Contains(name, "goicbgw") {
 		return "[main]"
 	} else {
 		return fmt.Sprintf("%6s", fmt.Sprintf("[%s]", name))

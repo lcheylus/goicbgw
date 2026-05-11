@@ -1,4 +1,4 @@
-module irc2icb
+module goicbgw
 
 go 1.25.0
 

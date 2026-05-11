@@ -9,9 +9,9 @@ import (
 	"os"
 	"strconv"
 
-	logger "irc2icb/utils"
-	optparse "irc2icb/utils"
-	"irc2icb/version"
+	logger "goicbgw/utils"
+	optparse "goicbgw/utils"
+	"goicbgw/version"
 
 	"github.com/BurntSushi/toml"
 )
