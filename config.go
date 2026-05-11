@@ -29,7 +29,8 @@ type Config struct {
 
 // Print usage / help message
 func printUsage() {
-	fmt.Printf("Usage: %s [-h] [-v] [-d] [-f logfile] -c conffile | [-l address] [-p port] -s server [-P port]\n", version.Name)
+	fmt.Printf("Usage: %s [-h] [-v] [-d] [-f logfile] -c conffile | [-l address] [-p port] -s server [-P port]\n\n", version.Name)
+	fmt.Printf("Proxy to connect an IRC client to an ICB server\n")
 	fmt.Println("\nOptions:")
 	fmt.Println("  -h, --help\t\t\tShow this help message")
 	fmt.Println("  -V, --version\t\t\tShow version")
