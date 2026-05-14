@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"net"
 	"os"
+	"path/filepath"
 	"strconv"
 
 	logger "goicbgw/utils"
@@ -112,9 +113,8 @@ func parseOptions() Config {
 		}
 	}
 
-	if config.ConfigFile == "" && config.Server == "" {
-		logger.LogError("config file or server name must be set")
-		os.Exit(1)
+	if config.ConfigFile == "" && config.Server != "" {
+		logger.LogInfo("server name set instead of default config file")
 	}
 
 	if config.ConfigFile != "" && config.Server != "" {
@@ -123,6 +123,22 @@ func parseOptions() Config {
 	}
 
 	return config
+}
+
+// Get path for default config directory
+func configPath() (string, error) {
+	// XDG config directory
+	xdgConfig := os.Getenv("XDG_CONFIG_HOME")
+	if xdgConfig == "" {
+		home, err := os.UserHomeDir()
+		if err != nil {
+			return "", err
+		}
+
+		xdgConfig = filepath.Join(home, ".config")
+	}
+
+	return filepath.Join(xdgConfig, version.Name, "config.toml"), nil
 }
 
 // Returns configuration read from TOML file
@@ -135,7 +151,7 @@ func loadConfig(pathname string) Config {
 			logger.LogFatalf("unable to load config from file '%s' (err = %s)", pathname, err_config.Error())
 		}
 	} else if errors.Is(err, os.ErrNotExist) {
-		logger.LogFatalf("unknown '%s' config file", pathname)
+		logger.LogFatalf("unknown %s config file", pathname)
 	} else {
 		logger.LogFatalf("unable to open config file '%s' (err = %s) ", pathname, err.Error())
 	}
@@ -145,15 +161,25 @@ func loadConfig(pathname string) Config {
 
 // Get configuration from command-line or from TOML file
 func getConfig() Config {
+	var config_from_file Config
+
 	config := parseOptions()
 
-	if config.ConfigFile != "" {
-		config_from_file := loadConfig(config.ConfigFile)
-		config.Server = config_from_file.Server
-		config.ServerPort = config_from_file.ServerPort
-		config.ListenAddr = config_from_file.ListenAddr
-		config.ListenPort = config_from_file.ListenPort
+	if config.ConfigFile == "" {
+		logger.LogInfo("use default config file")
+		config_path, err := configPath()
+		if err != nil {
+			logger.LogFatalf("unable to read default config file")
+		}
+		config_from_file = loadConfig(config_path)
+		config.ConfigFile = config_path
+	} else {
+		config_from_file = loadConfig(config.ConfigFile)
 	}
+	config.Server = config_from_file.Server
+	config.ServerPort = config_from_file.ServerPort
+	config.ListenAddr = config_from_file.ListenAddr
+	config.ListenPort = config_from_file.ListenPort
 
 	if config.Verbose == 0 {
 		if config.LogFile == "" {
